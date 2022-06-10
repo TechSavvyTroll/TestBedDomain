@@ -52,7 +52,7 @@ Replace x.x.x.x with the IPv4 of your DC1 host.
 
 *  Shutdown DC1 and take a Snapshot to save the current state of the host.
 
-#04 - Adding Clients/ Joining a Domain
+#  04 - Adding Clients/ Joining a Domain
 
 *  Create a linked clone based on ```Windows11_Template```
 *  Named this linked clone ``Client1```
