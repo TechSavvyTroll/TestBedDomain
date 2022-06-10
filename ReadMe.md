@@ -4,9 +4,9 @@
 *   Installed Windows 11 as a VM in VMware Workstation
     *   During the install process hitting Shift-F10 to pull up the command prompt and typed regedit.
     *   Navigate to Computer\HKEY_LOCAL_MACHINE\SYSTEM\Setup and create a New Key and name it LabConfig
-    *  Add a new DWORD value BypassTPMCheck and set the value data to 1.
-    *  Add a new DWORD value BypassRAMCheck and set the value data to 1.
-    *  Add a new DWORD value BypassSecureBootCheck and set the value data to 1
+    *  Add a new DWORD(32) value BypassTPMCheck and set the value data to 1.
+    *  Add a new DWORD(32) value BypassRAMCheck and set the value data to 1.
+    *  Add a new DWORD(32) value BypassSecureBootCheck and set the value data to 1
 
 Ref: (https://winbuzzer.com/2021/10/07/how-to-install-windows-11-without-tpm-2-xcxwbt/)
 
