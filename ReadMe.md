@@ -7,11 +7,13 @@
     *  Add a new DWORD value BypassTPMCheck and set the value data to 1.
     *  Add a new DWORD value BypassRAMCheck and set the value data to 1.
     *  Add a new DWORD value BypassSecureBootCheck and set the value data to 1
+
 Ref: (https://winbuzzer.com/2021/10/07/how-to-install-windows-11-without-tpm-2-xcxwbt/)
 
 *   Created a Snapshot for both VMs and tunred on the setting to allow using these hosts as clones.
 *   Made one Linked clone of the Windows Server 2022 and named it DC1 TestBed
 *   Made one Linked clone of the Windows 11 host and named it IT Manager.
+
 Ref: (https://us.informatiweb-pro.net/virtualization/vmware/vmware-workstation-15-clone-virtual-machines.html)
 
 
@@ -28,6 +30,6 @@ Ref: (https://us.informatiweb-pro.net/virtualization/vmware/vmware-workstation-1
 
 *   Install Actice Directory Windows Feature
 
-'''shell
+```powershell
 Install-WindowsFeature AD-Domain-Services -IncludemanagementTools
-'''
+```
