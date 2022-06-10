@@ -1,7 +1,7 @@
 # 01 - Install VMs
 
-*   Installed Windows Server 2022 Core as a VM in Vmware workstation
-*   Installed Windows 11 as a VM in VMware Workstation
+*   Installed Windows Server 2022 Core as a VM in Vmware workstation named this VM ```Windows Server 2022_Template```
+*   Installed Windows 11 as a VM in VMware Workstation named this VM ```Windows11_Template```
     *   During the install process hitting Shift-F10 to pull up the command prompt and typed regedit.
     *   Navigate to Computer\HKEY_LOCAL_MACHINE\SYSTEM\Setup and create a New Key and name it LabConfig
     *  Add a new DWORD(32) value BypassTPMCheck and set the value data to 1.
@@ -33,3 +33,51 @@ Ref: (https://us.informatiweb-pro.net/virtualization/vmware/vmware-workstation-1
 ```powershell
 Install-WindowsFeature AD-Domain-Services -IncludemanagementTools
 ```
+
+*  Install ADDSForest
+
+```powershell
+import-Module ADDSDeployment
+install-ADDSForest
+```
+   *  Entered in the domain you want to use. i.e. Testbed.com
+
+*  After it reboots it will take sometime for the appliying settings to finish.
+*  Next you will need to set the DNS back to the DC1 IP.
+
+```powershell
+Set-DNSClientServerAddress -InterfaceIndex 4 -ServerAddresses x.x.x.x
+```
+Replace x.x.x.x with the IPv4 of your DC1 host.
+
+*  Shutdown DC1 and take a Snapshot to save the current state of the host.
+
+#04 - Adding Clients/ Joining a Domain
+
+*  Create a linked clone based on ```Windows11_Template```
+*  Named this linked clone ``Client1```
+
+*  Once the ```Client1``` boot up log into the host.
+*  Change the DNS to be the DC1 IP address.
+```powershell
+Get-DNSClientServer
+```
+
+The above will show you the current DNS and show you the Interface Index number we will need to use.
+```powershell
+Set-DNSClientServerAddress -InterfaceIndex X -ServerAddresses x.x.x.x
+```
+Replace x.x.x.x with the IPv4 of your DC1 host. Also, replace X with the Interface Index.
+
+*  Add ```Client1``` to the Domain.
+   *  PowerShell option:
+   ```powershell 
+   Add-Computer -DomainName Domain01 -Restart
+   ```
+   *  GUI option:
+     Start -> Access work or school -> Connect -> "Join this device to a local Active Directory domain"
+
+*  Shutdown ```Client1``` and take a SnapShot.
+
+
+
